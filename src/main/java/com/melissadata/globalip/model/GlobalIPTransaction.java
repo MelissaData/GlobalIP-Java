@@ -1,17 +1,17 @@
-package melissadata.globalip.model;
-
-import org.apache.sling.commons.json.JSONObject;
+package com.melissadata.globalip.model;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 public class GlobalIPTransaction {
 
     private final String endpoint;
-
 
     private String identNumber;
     private String ip;
@@ -24,29 +24,20 @@ public class GlobalIPTransaction {
 
     public String processTransaction(String request) {
         String response = "";
-        URI uri;
-        URL url;
+        BufferedReader reader = null;
         try {
-            uri = new URI(request);
-            url = new URL(uri.toURL().toString());
+            URL url = new URL(request);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            String responseBody = reader.lines().collect(Collectors.joining());
 
-            HttpURLConnection urlConn = (HttpURLConnection)(url.openConnection());
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonObject responseObject = gson.fromJson(responseBody, JsonObject.class);
+            response = gson.toJson(responseObject);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-
-            StringBuilder jsonResponse = new StringBuilder();
-            String inputLine = "";
-
-                while ((inputLine = in.readLine()) != null) {
-                    jsonResponse.append(inputLine);
-                }
-                @SuppressWarnings("deprecation")
-                JSONObject test = new JSONObject(jsonResponse.toString());
-                response = test.toString(10);
-
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error sending request: \n" + e);
         }
+
         return response;
     }
 

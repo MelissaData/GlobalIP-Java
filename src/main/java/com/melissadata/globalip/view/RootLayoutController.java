@@ -1,9 +1,9 @@
-package melissadata.globalip.view;
+package com.melissadata.globalip.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import melissadata.globalip.Main;
+import com.melissadata.globalip.Main;
 
 public class RootLayoutController {
     // Reference to the main application

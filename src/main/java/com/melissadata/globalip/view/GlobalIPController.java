@@ -1,10 +1,10 @@
-package melissadata.globalip.view;
+package com.melissadata.globalip.view;
 
-import javafx.collections.FXCollections;
+// import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import melissadata.globalip.Main;
-import melissadata.globalip.model.GlobalIPTransaction;
+import com.melissadata.globalip.Main;
+import com.melissadata.globalip.model.GlobalIPTransaction;
 
 public class GlobalIPController {
 
