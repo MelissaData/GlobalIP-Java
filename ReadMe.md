@@ -34,12 +34,19 @@ Java 8 based builds do not need any extra software.
 
 ## Compiling and Running the Sample
 
-**Java 8**
+### Java 8
 
-Running `Sample.bat` will build and run the example.
+Run `java8_compile.bat` to build the example then use `java8_run.bat` to run it.
 
-**Java 11**
+### Java 11
 
+Building and running for Java 11+ requires an installation of
+[Apache Maven](https://maven.apache.org/install.html).
+
+#### Method 1
+Run `java11_compile.bat` to build the example then use `java11_run.bat` to run it.
+
+#### Method 2
 `mvn clean javafx:jlink`
 
 This will create a folder called `target`.
@@ -65,7 +72,7 @@ Oracle's official distribution of Java 8 or [ZuluFX](https://www.azul.com/downlo
 
 Q: My Maven build is failing with `invalid flag: --module-path`<br>
 A: You are attempting to use Maven to build this project with Java 8.
-Try building with `Sample.bat` or install and configure the PATH variable for Java 11.
+Try building with `Java8_compile.bat` or install and configure the PATH variable for Java 11.
 
 Q: Which method do I use?<br>
 A: Run `java -version` or `mvn -v` to get the version of Java you are using.
